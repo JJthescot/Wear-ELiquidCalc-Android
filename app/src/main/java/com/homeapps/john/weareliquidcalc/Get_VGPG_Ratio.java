@@ -2,23 +2,20 @@ package com.homeapps.john.weareliquidcalc;
 
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
-import android.view.View;
+import android.widget.TextView;
 
-public class MainActivity extends WearableActivity {
+public class Get_VGPG_Ratio extends WearableActivity {
 
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_flavour);
 
+        mTextView = (TextView) findViewById(R.id.text);
 
         // Enables Always-on
         setAmbientEnabled();
-    }
-
-    //Todo: Move nav code from action drawer to nav click listeners
-    protected void nav_ClickListener(View view){
-        // handle navigational stuff here
     }
 }

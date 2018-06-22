@@ -4,5 +4,32 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
+    <string name="General_Btn_Submit">Submit</string>
+    <string name="General_Btn_Add">+</string>
+    <string name="General_Btn_Subtract">-</string>
+    <string name="General_Btn_Save">-</string>
+
+    <string name="Home_Msg_VG">VG: </string>
+    <string name="Home_Msg_PG">PG: </string>
+    <string name="Home_Msg_Nicotine">Nic: </string>
+
+    <string name="Nic_Msg_Header">Nicotine</string>
+    <string name="Nic_Msg_Nic_Base">Base Strength</string>
+    <string name="Nic_Msg_Strenth">Strength Desired</string>
+
+    <string name="VGPG_Msg_Header">VG/PG Ratio</string>
+
+    <string name="Flava_Msg_Header">Add Flavour</string>
+    <string name="Flava_Msg_Add_Name">Name</string>
+    <string name="Flava_Msg_Percentage">Percentage</string>
+    <string name="title_activity_get__nicotine_">get_Nicotine_Activity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_get__vgpg__ratio">get_VGPG_Ratio</string>
+    <string name="title_activity_add__flavour_">Add_Flavour_Activity</string>
+
+
 </resources>

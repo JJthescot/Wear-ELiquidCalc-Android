@@ -32,6 +32,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Get_Nicotine_Activity"
+            android:label="@string/title_activity_get__nicotine_" />
+        <activity
+            android:name=".Get_VGPG_Ratio"
+            android:label="@string/title_activity_get__vgpg__ratio" />
+        <activity
+            android:name=".Add_Flavour_Activity"
+            android:label="@string/title_activity_add__flavour_" />
+
     </application>
 
 </manifest>
