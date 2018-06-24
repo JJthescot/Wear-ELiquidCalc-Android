@@ -6,14 +6,16 @@ import java.util.ArrayList;
 public class Recipe implements Serializable{
     private String name;
     private Integer ratio;
+    private Integer nicotinebase;
     private Integer nicotine;
     private ArrayList<Flavour> flavours;
 
     public Recipe(){
     }
-    public Recipe(String Name, Integer VGPGPercent, Integer Nicotine, ArrayList<Flavour> Flavours){
+    public Recipe(String Name, Integer VGPGPercent, Integer NicBase,Integer Nicotine, ArrayList<Flavour> Flavours){
         this.name = Name;
         this.ratio = VGPGPercent;
+        this.nicotinebase = NicBase;
         this.nicotine = Nicotine;
         this.flavours = Flavours;
     }
@@ -48,5 +50,13 @@ public class Recipe implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getNicotinebase() {
+        return nicotinebase;
+    }
+
+    public void setNicotinebase(Integer nicotinebase) {
+        this.nicotinebase = nicotinebase;
     }
 }

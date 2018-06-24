@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wear.widget.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_margin="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:drawable="@drawable/recycler_item_background"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:drawable="@drawable/recycler_item_background"
+        >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawable="@drawable/recycler_item_background">
+
+            <TextView
+                android:id="@+id/flavour_listitem_name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="TextView"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/flavour_listitem_percentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="TextView" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.wear.widget.BoxInsetLayout>

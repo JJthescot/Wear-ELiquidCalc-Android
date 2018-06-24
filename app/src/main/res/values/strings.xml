@@ -21,27 +21,27 @@
 
     <string name="VGPG_Msg_Header">VG/PG Ratio</string>
 
+    <string name="title_activity_addflavour">AddFlavour_Activity</string>
     <string name="Flava_Msg_Header">Add Flavour</string>
     <string name="Flava_Msg_Add_Name">Name</string>
     <string name="Flava_Msg_Percentage">Percentage</string>
-    <string name="title_activity_get__nicotine_">get_Nicotine_Activity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
-    <string name="title_activity_get__vgpg__ratio">get_VGPG_Ratio</string>
-    <string name="title_activity_add__flavour_">Add_Flavour_Activity</string>
 
+    <string name="title_activity_addrecipe">AddRecipe_Activity</string>
+    <string name="txt_lbl_flavours">Flavours</string>
+    <string name="txt_lbl_desired_nic">Desired Nic: %1$d</string>
+    <string name="txt_lbl_base_nicotine">Base Nicotine: %1$d</string>
+    <string name="txt_lbl_pg_vg_ratio">PG/VG Ratio: %1$d</string>
+    <string name="txt_lbl_add_recipe">Add Recipe</string>
+
+    <string name="title_activity_recipe_details_">RecipeDetails_Activity</string>
+    <string name="recipe_details_header">Recipe Details</string>
+    <string name="recipe_details_details">Recipe: %1$s%nRatio: %2$d%%%nBase nicotine: %3$d%%%nTarget nicotine: %4$d%%%n</string>
+    <string name="recipe_details_details_flavour">Flavour %1$d: %2$s - %3$d%% %n</string>
+
+    <string name="title_activity_home_">Home_Activity</string>
     <string-array name="mainmenu_items">
         <item name="Home">VG/PG Ratio</item>
         <item name="Show Recipe">Nic Strength</item>
         <item name="Add Recipe">Add Flavour</item>
     </string-array>
-    <string name="title_activity_base">BaseActivity</string>
-    <string name="title_activity_main2">Main2Activity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_home_">Home_Activity</string>
 </resources>

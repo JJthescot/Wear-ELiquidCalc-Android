@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wear.widget.drawer.WearableDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:deviceIds="wear"
+    android:id="@+id/drawer_layout"
+    android:isScrollContainer="true"
+    android:nestedScrollingEnabled="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:isScrollContainer="true"
+        android:nestedScrollingEnabled="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_lbl_add_recipe"/>
+            <TextView
+                android:id="@+id/txt_pg_vg_ratio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_lbl_pg_vg_ratio"/>
+
+            <SeekBar
+                android:id="@+id/seek_vgpg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                />
+
+            <TextView
+                android:id="@+id/txt_base_nicotine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_lbl_base_nicotine" />
+
+            <SeekBar
+                android:id="@+id/seek_nic_base"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="100"/>
+
+            <TextView
+                android:id="@+id/txt_desired_nic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_lbl_desired_nic" />
+
+            <SeekBar
+                android:id="@+id/seek_nic_target"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="30"/>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_lbl_flavours" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/flavours_recyclerview"
+                android:background="@drawable/recycler_view_background"
+                android:scrollbars="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollIndicators="right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Discard"/>
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.wear.widget.drawer.WearableNavigationDrawerView
+        android:id="@+id/navigation_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:id="@+id/nav_close_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="nav_ClickListener"
+                android:text="Button"
+                />
+
+        </RelativeLayout>
+
+    </android.support.wear.widget.drawer.WearableNavigationDrawerView>
+<!--
+    <android.support.wear.widget.drawer.WearableActionDrawerView
+        android:id="@+id/action_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:actionMenu="@menu/action_drawer_menu">
+
+    </android.support.wear.widget.drawer.WearableActionDrawerView>
+-->
+</android.support.wear.widget.drawer.WearableDrawerLayout>
