@@ -1,9 +1,11 @@
 package com.homeapps.john.weareliquidcalc;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.wear.activity.ConfirmationActivity;
 import android.support.wear.widget.drawer.WearableActionDrawerView;
 import android.support.wearable.activity.WearableActivity;
 import android.view.MenuItem;
@@ -19,22 +21,33 @@ import java.util.Arrays;
 
 public class Home_Activity extends WearableActivity {
 
+
     public static interface ClickListener{
         public void onClick(View view,int position);
         public void onLongClick(View view, int position);
     }
 
+
+    public static final int REQCODE_DETAILS = 1;
+    public static final int REQCODE_ADDRECIPE = 2;
+    public static final int REQCODE_DELETECONFIRM = 3;
+    public static final int REQCODE_SAVECONFIRM = 4;
+
     ArrayList<Recipe> testData;
+    ArrayList<Recipe> recipesData;
+    int deleteRecipeIndex;
     RecyclerView recyclerView;
     WearableActionDrawerView actionMenuView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_);
 
-//        testData = new ArrayList<>();
+        recipesData = new ArrayList<>();
         testData = getRecipeTestData();
+        deleteRecipeIndex = -1;
 
         actionMenuView = (WearableActionDrawerView) findViewById(R.id.home_action_drawer);
         actionMenuView.getController().peekDrawer();
@@ -44,9 +57,10 @@ public class Home_Activity extends WearableActivity {
                 Intent data;
                 switch(menuItem.getItemId()) {
                     case R.id.add_new_recipe:
+                        // Launch add recipe activity
                         data = new Intent(Home_Activity.this, AddRecipe_Activity.class);
-                        data.putExtra("Recipe",testData.get(2));
-                        startActivityForResult(data, 1);
+//                        data.putExtra("Recipe",testData.get(2));
+                        startActivityForResult(data, REQCODE_ADDRECIPE);
                         return true;
                     default:
                         return false;
@@ -61,10 +75,11 @@ public class Home_Activity extends WearableActivity {
                 recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
-                //Values are passing to activity & to fragment as well
+                // Launch recipe details activity
                 Intent recipeDetailsIntent = new Intent(Home_Activity.this, RecipeDetails_Activity.class);
+                recipeDetailsIntent.putExtra("recipeIndex",position);
                 recipeDetailsIntent.putExtra("recipe",testData.get(position));
-                startActivityForResult(recipeDetailsIntent,position);
+                startActivityForResult(recipeDetailsIntent,REQCODE_DETAILS);
                 /* // Test sub-view selection detection
                 TextView text=(TextView) view.findViewById(R.id.recipe_textview_row1);
                 text.setOnClickListener(new View.OnClickListener() {
@@ -91,14 +106,41 @@ public class Home_Activity extends WearableActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(resultCode){
-            case RESULT_OK:
-                break;
-            case RESULT_CANCELED:
-                break;
-            default:
-                break;
+        if(resultCode== Activity.RESULT_OK){
+            switch (requestCode) {
+                case REQCODE_DETAILS:
+                    deleteRecipeIndex = data.getIntExtra("recipeIndex",-1);
+                    if(deleteRecipeIndex != -1) {
+                        Intent confirmIntent = new Intent(Home_Activity.this, ConfirmAction_Activity.class);
+                        confirmIntent.putExtra("confirmMessage","Deleting Recipe");
+                        startActivityForResult(confirmIntent,REQCODE_DELETECONFIRM);
+                    }
+
+                    //Todo: Handle delete recipe
+                    break;
+                case REQCODE_ADDRECIPE:
+                    recipesData.add((Recipe)data.getSerializableExtra("recipe"));
+                    //Todo: Trigger save recipe, invalidate list
+                    break;
+                case REQCODE_DELETECONFIRM:
+                    testData.remove(deleteRecipeIndex);
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                    deleteRecipeIndex = -1;
+
+                    Intent intent = new Intent(this, ConfirmationActivity.class);
+                    intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE,
+                            ConfirmationActivity.SUCCESS_ANIMATION);
+                    intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE,
+                            getString(R.string.recipe_deleted));
+                    startActivity(intent);
+
+                    break;
+                default:
+                    break;
+            }
         }
+        else
+            return;
     }
 
     private ArrayList<Recipe> getRecipeTestData(){

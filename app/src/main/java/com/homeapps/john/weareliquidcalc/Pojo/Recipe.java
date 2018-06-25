@@ -11,6 +11,7 @@ public class Recipe implements Serializable{
     private ArrayList<Flavour> flavours;
 
     public Recipe(){
+        flavours = new ArrayList<>();
     }
     public Recipe(String Name, Integer VGPGPercent, Integer NicBase,Integer Nicotine, ArrayList<Flavour> Flavours){
         this.name = Name;

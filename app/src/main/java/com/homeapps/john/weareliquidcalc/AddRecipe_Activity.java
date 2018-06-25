@@ -1,7 +1,9 @@
 package com.homeapps.john.weareliquidcalc;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,7 +13,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.support.wear.widget.drawer.WearableNavigationDrawerView;
 import android.support.wearable.activity.WearableActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -30,6 +36,7 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
 
     private ArrayList<String> mMenuItems;
 
+    private EditText editName;
     private TextView tvRatio;//txt_lbl_pg_vg_ratio
     private TextView tvNicBase;//txt_lbl_base_nicotine
     private TextView tvNicTarget;//txt_lbl_desired_nic
@@ -49,7 +56,7 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
 
     private FlavourDataAdapter mAdapter;
     SwipeController swipeController = null;
-    Recipe currentRecipe;
+    Recipe newRecipe;
 
 
     @Override
@@ -57,10 +64,10 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrecipe);
 
-        Bundle passedIntent = getIntent().getExtras();
-        currentRecipe = (Recipe)passedIntent.getSerializable("Recipe");
+        newRecipe = new Recipe();//(Recipe)passedIntent.getSerializable("Recipe");
          mMenuItems = new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.mainmenu_items)));
 
+         editName = (EditText) findViewById(R.id.editText);
         tvRatio = (TextView) findViewById(R.id.txt_pg_vg_ratio);
         tvNicBase = (TextView) findViewById(R.id.txt_base_nicotine);
         tvNicTarget = (TextView) findViewById(R.id.txt_desired_nic);
@@ -73,6 +80,21 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         seekNicBase = (SeekBar) findViewById(R.id.seek_nic_base);
         seekNicTarget = (SeekBar) findViewById(R.id.seek_nic_target);
         seekChangeHandler = new SeekBarChangeHandler();
+
+        editName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND){
+                    // handle input
+                    InputMethodManager imm = (InputMethodManager)textView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+                    editName.clearFocus();
+                    handled = true;
+                }
+                return handled;
+            }
+        });
 
         seekRatio.setProgress(ratioValue);
         seekNicBase.setProgress(nicBaseValue);
@@ -112,7 +134,7 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
             }
         });
         */
-        setFlavoursDataAdapter(currentRecipe);
+        setFlavoursDataAdapter(newRecipe);
         setupRecyclerView();
         // Enables Always-on
         setAmbientEnabled();
@@ -171,6 +193,23 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         });
     }
 
+    //Todo: verify valid recipe before returning
+    public void save_click(View view){
+        newRecipe.setName(editName.getText().toString());
+        newRecipe.setRatio(ratioValue);
+        newRecipe.setNicotinebase(nicBaseValue);
+        newRecipe.setNicotine(nicTargetValue);
+//        newRecipe.setFlavours();
+        Intent result = new Intent();
+        result.putExtra("recipe", newRecipe);
+        setResult(Activity.RESULT_OK, result);
+        finish();
+    }
+
+    public void discard_click(View view){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
     private final class NavAdapter extends WearableNavigationDrawerView.WearableNavigationDrawerAdapter{
 
         Context mContext;

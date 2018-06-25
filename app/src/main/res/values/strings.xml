@@ -37,6 +37,7 @@
     <string name="recipe_details_header">Recipe Details</string>
     <string name="recipe_details_details">Recipe: %1$s%nRatio: %2$d%%%nBase nicotine: %3$d%%%nTarget nicotine: %4$d%%%n</string>
     <string name="recipe_details_details_flavour">Flavour %1$d: %2$s - %3$d%% %n</string>
+    <string name="recipe_deleted">Recipe Deleted</string>
 
     <string name="title_activity_home_">Home_Activity</string>
     <string-array name="mainmenu_items">
@@ -44,4 +45,10 @@
         <item name="Show Recipe">Nic Strength</item>
         <item name="Add Recipe">Add Flavour</item>
     </string-array>
+    <string name="title_activity_confirm_action_">ConfirmAction_Activity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>
