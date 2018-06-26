@@ -23,7 +23,7 @@
             android:name="com.google.android.wearable.standalone"
             android:value="true" />
 
-        <activity android:name="android.support.wear.activity.ConfirmationActivity"></activity>
+        <activity android:name="android.support.wear.activity.ConfirmationActivity" />
         <activity
             android:name=".Home_Activity"
             android:label="@string/title_activity_home_">
@@ -44,7 +44,10 @@
             android:label="@string/title_activity_recipe_details_" />
         <activity
             android:name=".ConfirmAction_Activity"
-            android:label="@string/title_activity_confirm_action_"></activity>
+            android:label="@string/title_activity_confirm_action_" />
+        <activity
+            android:name=".MixDetails_Activity"
+            android:label="@string/title_activity_mix_details_"></activity>
     </application>
 
 </manifest>

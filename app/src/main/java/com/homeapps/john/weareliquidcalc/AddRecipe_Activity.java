@@ -34,6 +34,8 @@ import java.util.List;
 
 public class AddRecipe_Activity extends WearableActivity implements WearableNavigationDrawerView.OnItemSelectedListener{
 
+    private static final int REQCODE_ADDFLAVOUR = 1;
+
     private ArrayList<String> mMenuItems;
 
     private EditText editName;
@@ -140,15 +142,24 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         setAmbientEnabled();
     }
 
-    //Todo: Move nav code from action drawer to nav click listeners
-    protected void nav_ClickListener(View view){
-        // handle navigational stuff here
-    }
-
     @Override
     public void onItemSelected(int i) {
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode){
+                case REQCODE_ADDFLAVOUR:
+                    Flavour resultFlavour = (Flavour)data.getSerializableExtra("flavour");
+                    newRecipe.getFlavours().add(0,resultFlavour);
+                    mAdapter.notifyDataSetChanged();
+                    break;
+            }
+
+        }
     }
 
     private void setFlavoursDataAdapter(Recipe recipe) {
@@ -193,13 +204,18 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         });
     }
 
+    public void addRecipe_click(View view){
+        Intent addFlavourIntent = new Intent(AddRecipe_Activity.this, AddFlavour_Activity.class);
+        startActivityForResult(addFlavourIntent,REQCODE_ADDFLAVOUR);
+    }
+
     //Todo: verify valid recipe before returning
     public void save_click(View view){
         newRecipe.setName(editName.getText().toString());
         newRecipe.setRatio(ratioValue);
         newRecipe.setNicotinebase(nicBaseValue);
         newRecipe.setNicotine(nicTargetValue);
-//        newRecipe.setFlavours();
+//        newRecipe.setFlavours(newRecipe.);
         Intent result = new Intent();
         result.putExtra("recipe", newRecipe);
         setResult(Activity.RESULT_OK, result);
@@ -210,6 +226,7 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         setResult(Activity.RESULT_CANCELED);
         finish();
     }
+
     private final class NavAdapter extends WearableNavigationDrawerView.WearableNavigationDrawerAdapter{
 
         Context mContext;

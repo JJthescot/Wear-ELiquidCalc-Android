@@ -1,6 +1,6 @@
 package com.homeapps.john.weareliquidcalc;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.wear.widget.drawer.WearableActionDrawerView;
@@ -16,7 +16,6 @@ public class RecipeDetails_Activity extends WearableActivity {
     private WearableActionDrawerView actionMenuView;
     private int recipeIndex;
 
-    @SuppressLint("StringFormatInvalid")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +27,9 @@ public class RecipeDetails_Activity extends WearableActivity {
         mTextView = (TextView) findViewById(R.id.txt_lbl_details);
         actionMenuView = (WearableActionDrawerView) findViewById(R.id.details_actionview);
 
-        String strDetails = getString(R.string.recipe_details_details,
+        String strDetails = String.format(getString(R.string.recipe_details_details),
                 passedRecipe.getName(),
-                passedRecipe.getRatio(),
+                "PG "+passedRecipe.getRatio().toString() + "/" + (100 - passedRecipe.getRatio() + " VG"),
                 passedRecipe.getNicotinebase(),
                 passedRecipe.getNicotine());
         for(int i=0;i<passedRecipe.getFlavours().size();i++){
@@ -40,15 +39,23 @@ public class RecipeDetails_Activity extends WearableActivity {
         }
 
         mTextView.setText(strDetails);
-        actionMenuView.getController().peekDrawer();
+        actionMenuView.getController().peekDrawer(); // no peeking
         actionMenuView.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                Intent result = new Intent();
-                result.putExtra("recipeIndex",recipeIndex);
-                result.putExtra("deleting",true);
-                setResult(RESULT_OK,result);
-                finish();
+                switch (menuItem.getItemId()) {
+                    case R.id.delete_recipe:
+                        Intent result = new Intent();
+                        result.putExtra("recipeIndex", recipeIndex);
+                        result.putExtra("deleting", true);
+                        setResult(RESULT_OK, result);
+                        finish();
+                        break;
+                    case R.id.details_back:
+                        setResult(Activity.RESULT_CANCELED);
+                        finish();
+                        break;
+                }
                 return true;
             }
         });

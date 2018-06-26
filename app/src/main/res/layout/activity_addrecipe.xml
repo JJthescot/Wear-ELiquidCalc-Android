@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".AddRecipe_Activity"
     tools:deviceIds="wear"
     android:id="@+id/drawer_layout"
     android:isScrollContainer="true"
@@ -16,6 +16,7 @@
         android:scrollbars="vertical"
         android:isScrollContainer="true"
         android:nestedScrollingEnabled="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,29 +26,28 @@
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_lbl_add_recipe"/>
+                android:text="@string/txt_lbl_add_recipe" />
 
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:imeOptions="actionSend"
                 android:inputType="textShortMessage"
-                android:text="Name"
-                android:imeOptions="actionSend"/>
+                android:text="Name" />
 
             <TextView
                 android:id="@+id/txt_pg_vg_ratio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_lbl_pg_vg_ratio"/>
+                android:text="@string/txt_lbl_pg_vg_ratio" />
 
             <SeekBar
                 android:id="@+id/seek_vgpg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="100"
-                />
+                android:max="100" />
 
             <TextView
                 android:id="@+id/txt_base_nicotine"
@@ -59,7 +59,7 @@
                 android:id="@+id/seek_nic_base"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="100"/>
+                android:max="100" />
 
             <TextView
                 android:id="@+id/txt_desired_nic"
@@ -71,33 +71,49 @@
                 android:id="@+id/seek_nic_target"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="30"/>
+                android:max="30" />
 
-            <TextView
-                android:id="@+id/textView3"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_lbl_flavours" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="@string/txt_lbl_flavours" />
+
+                <Button
+                    android:id="@+id/btn_add_recipe"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+"
+                    android:onClick="addRecipe_click"/>
+            </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/flavours_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:background="@drawable/recycler_view_background"
-                android:scrollbars="vertical"
-                android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:scrollIndicators="right"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Save"
-                android:onClick="save_click"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Discard"
-                android:onClick="discard_click"/>
-                />
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbars="vertical" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="save_click"
+                android:text="Save" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="discard_click"
+                android:text="Discard" />
         </LinearLayout>
 
     </ScrollView>
@@ -116,7 +132,6 @@
                 android:id="@+id/nav_close_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="nav_ClickListener"
                 android:text="Button"
                 />
 

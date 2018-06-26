@@ -33,7 +33,7 @@ public class Home_Activity extends WearableActivity {
     public static final int REQCODE_DELETECONFIRM = 3;
     public static final int REQCODE_SAVECONFIRM = 4;
 
-    ArrayList<Recipe> testData;
+//    ArrayList<Recipe> testData;
     ArrayList<Recipe> recipesData;
     int deleteRecipeIndex;
     RecyclerView recyclerView;
@@ -46,7 +46,8 @@ public class Home_Activity extends WearableActivity {
         setContentView(R.layout.activity_home_);
 
         recipesData = new ArrayList<>();
-        testData = getRecipeTestData();
+//        recipesData = getRecipeTestData();
+
         deleteRecipeIndex = -1;
 
         actionMenuView = (WearableActionDrawerView) findViewById(R.id.home_action_drawer);
@@ -70,15 +71,15 @@ public class Home_Activity extends WearableActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recipe_recyclerview);
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecipeRecyclerViewAdapter(testData));
+        recyclerView.setAdapter(new RecipeRecyclerViewAdapter(recipesData));
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
                 recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, final int position) {
                 // Launch recipe details activity
-                Intent recipeDetailsIntent = new Intent(Home_Activity.this, RecipeDetails_Activity.class);
+                Intent recipeDetailsIntent = new Intent(Home_Activity.this, MixDetails_Activity.class);
                 recipeDetailsIntent.putExtra("recipeIndex",position);
-                recipeDetailsIntent.putExtra("recipe",testData.get(position));
+                recipeDetailsIntent.putExtra("recipe",recipesData.get(position));
                 startActivityForResult(recipeDetailsIntent,REQCODE_DETAILS);
                 /* // Test sub-view selection detection
                 TextView text=(TextView) view.findViewById(R.id.recipe_textview_row1);
@@ -115,15 +116,14 @@ public class Home_Activity extends WearableActivity {
                         confirmIntent.putExtra("confirmMessage","Deleting Recipe");
                         startActivityForResult(confirmIntent,REQCODE_DELETECONFIRM);
                     }
-
-                    //Todo: Handle delete recipe
                     break;
                 case REQCODE_ADDRECIPE:
                     recipesData.add((Recipe)data.getSerializableExtra("recipe"));
+                    recyclerView.getAdapter().notifyDataSetChanged();
                     //Todo: Trigger save recipe, invalidate list
                     break;
                 case REQCODE_DELETECONFIRM:
-                    testData.remove(deleteRecipeIndex);
+                    recipesData.remove(deleteRecipeIndex);
                     recyclerView.getAdapter().notifyDataSetChanged();
                     deleteRecipeIndex = -1;
 

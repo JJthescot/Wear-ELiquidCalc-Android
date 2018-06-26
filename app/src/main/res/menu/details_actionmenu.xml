@@ -2,8 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <group android:checkableBehavior="single">
             <item
+                android:id="@+id/details_back"
+                android:icon="@android:drawable/ic_menu_revert"
+                android:title="Back" />
+            <item
                 android:id="@+id/delete_recipe"
-                android:icon="@android:drawable/ic_input_add"
+                android:icon="@android:drawable/ic_delete"
                 android:title="Delete Recipe" />
         </group>
 </menu>
