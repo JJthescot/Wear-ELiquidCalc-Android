@@ -53,8 +53,6 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
     private int nicBaseValue = 0;
     private int nicTargetValue = 0;
 
-    private WearableNavigationDrawerView mWearableNavigationDrawer;
-//    private WearableActionDrawerView wearableActionDrawerView;
 
     private FlavourDataAdapter mAdapter;
     SwipeController swipeController = null;
@@ -106,36 +104,8 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
         seekNicBase.setOnSeekBarChangeListener(seekChangeHandler );
         seekNicTarget.setOnSeekBarChangeListener(seekChangeHandler );
 
-        mWearableNavigationDrawer = (WearableNavigationDrawerView)findViewById(R.id.navigation_drawer);
-        mWearableNavigationDrawer.setAdapter(new NavAdapter(this));
-        mWearableNavigationDrawer.getController().peekDrawer();
-        mWearableNavigationDrawer.addOnItemSelectedListener(this);
 
-/*        wearableActionDrawerView = (WearableActionDrawerView)findViewById(R.id.action_drawer);
-        wearableActionDrawerView.getController().peekDrawer();
-        wearableActionDrawerView.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch(menuItem.getItemId()) {
-                    case R.id.nav_back:
-                        setResult(RESULT_CANCELED);
-                        finish();
-                        break;
-                    case R.id.nav_save:
-                        setResult(RESULT_OK);
-                        finish();
-                        break;
-                    case R.id.nav_vgpg_ratio:
-                        break;
-                    case R.id.nav_set_nicotine:
-                        break;
-                    case R.id.nav_add_flava:
-                        break;
-                }
-                return false;
-            }
-        });
-        */
+
         setFlavoursDataAdapter(newRecipe);
         setupRecyclerView();
         // Enables Always-on

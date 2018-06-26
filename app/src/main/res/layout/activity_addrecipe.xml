@@ -118,26 +118,7 @@
 
     </ScrollView>
 
-    <android.support.wear.widget.drawer.WearableNavigationDrawerView
-        android:id="@+id/navigation_drawer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true">
-
-            <Button
-                android:id="@+id/nav_close_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button"
-                />
-
-        </RelativeLayout>
-
-    </android.support.wear.widget.drawer.WearableNavigationDrawerView>
 <!--
     <android.support.wear.widget.drawer.WearableActionDrawerView
         android:id="@+id/action_drawer"
