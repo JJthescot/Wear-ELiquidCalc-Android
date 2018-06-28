@@ -1,4 +1,4 @@
-package com.homeapps.john.mobileeliquidcalc;
+package com.homeapps.john.mobileeliquidcalc.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.homeapps.john.mobileeliquidcalc.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MobileEliquidCalc</string>
     <string name="action_settings">Settings</string>
+    <string name="DataFilename">RecipeData.dat</string>
+    <string name="title_activity_recipe_list">RecipeListActivity</string>
+    <string name="RecipeListDescFlavours">Flavours: %1$d</string>
+    <string name="empty_list">No recipes created yet!</string>
 </resources>

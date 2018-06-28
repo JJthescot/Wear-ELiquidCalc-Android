@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.homeapps.john.weareliquidcalc.Pojo.Recipe;
+import com.homeapps.john.shared.common.Recipe;
 import com.homeapps.john.weareliquidcalc.R;
 
 import java.util.ArrayList;
@@ -39,8 +39,8 @@ public class RecipeRecyclerViewAdapter extends RecyclerView.Adapter<RecipeRecycl
 
     @Override
     public void onBindViewHolder(@NonNull myViewHolder viewHolder, int i) {
-        viewHolder.mTextView_Row1.setText(mDataset.get(i).getName());
-        viewHolder.mTextView_Row2.setText(mDataset.get(i).getRatio().toString());
+        viewHolder.mTextView_Row1.setText(mDataset.get(i).Name);
+        viewHolder.mTextView_Row2.setText(mDataset.get(i).Ratio.toString());
     }
 
     @Override

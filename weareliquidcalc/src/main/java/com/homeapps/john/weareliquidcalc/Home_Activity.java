@@ -12,11 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.homeapps.john.shared.common.Flavour;
+import com.homeapps.john.shared.common.Recipe;
 import com.homeapps.john.weareliquidcalc.Helpers.DataManager;
 import com.homeapps.john.weareliquidcalc.Helpers.RecipeRecyclerViewAdapter;
 import com.homeapps.john.weareliquidcalc.Helpers.RecyclerTouchListener;
-import com.homeapps.john.weareliquidcalc.Pojo.Flavour;
-import com.homeapps.john.weareliquidcalc.Pojo.Recipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;

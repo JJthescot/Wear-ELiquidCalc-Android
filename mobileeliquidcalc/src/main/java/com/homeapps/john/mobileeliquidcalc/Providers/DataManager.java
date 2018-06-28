@@ -1,9 +1,9 @@
-package com.homeapps.john.weareliquidcalc.Helpers;
+package com.homeapps.john.mobileeliquidcalc.Providers;
 
 import android.content.Context;
 
+import com.homeapps.john.mobileeliquidcalc.R;
 import com.homeapps.john.shared.common.Recipe;
-import com.homeapps.john.weareliquidcalc.R;
 
 import java.io.File;
 import java.io.FileInputStream;

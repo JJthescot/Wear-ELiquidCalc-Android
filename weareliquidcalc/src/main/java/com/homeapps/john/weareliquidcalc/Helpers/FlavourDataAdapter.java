@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.homeapps.john.weareliquidcalc.Pojo.Flavour;
+import com.homeapps.john.shared.common.Flavour;
 import com.homeapps.john.weareliquidcalc.R;
 
 import java.util.List;
@@ -39,8 +39,8 @@ public class FlavourDataAdapter extends RecyclerView.Adapter<FlavourDataAdapter.
     @Override
     public void onBindViewHolder(FlavourViewHolder holder, int position) {
         Flavour flavour = flavours.get(position);
-        holder.name.setText(flavour.getName());
-        holder.percent.setText(flavour.getPercentage().toString());
+        holder.name.setText(flavour.Name);
+        holder.percent.setText(flavour.Percentage.toString());
     }
 
     @Override

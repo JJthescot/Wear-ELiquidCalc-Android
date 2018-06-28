@@ -21,11 +21,11 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.homeapps.john.shared.common.Flavour;
+import com.homeapps.john.shared.common.Recipe;
 import com.homeapps.john.weareliquidcalc.Helpers.FlavourDataAdapter;
 import com.homeapps.john.weareliquidcalc.Helpers.SwipeRecycler.SwipeController;
 import com.homeapps.john.weareliquidcalc.Helpers.SwipeRecycler.SwipeControllerActions;
-import com.homeapps.john.weareliquidcalc.Pojo.Flavour;
-import com.homeapps.john.weareliquidcalc.Pojo.Recipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,7 +127,7 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
             switch (requestCode){
                 case REQCODE_ADDFLAVOUR:
                     Flavour resultFlavour = (Flavour)data.getSerializableExtra("flavour");
-                    newRecipe.getFlavours().add(0,resultFlavour);
+                    newRecipe.Flavours.add(0,resultFlavour);
                     mAdapter.notifyDataSetChanged();
                     break;
             }
@@ -136,10 +136,10 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
     }
 
     private void setFlavoursDataAdapter(Recipe recipe) {
-        List<Flavour> flavours = recipe.getFlavours();
+        List<Flavour> flavours = recipe.Flavours;
         try {
             for (int i=0;i<flavours.size();i++)
-                mMenuItems.add(flavours.get(i).getName());
+                mMenuItems.add(flavours.get(i).Name);
         } catch (Exception e) {
 
         }
@@ -184,10 +184,10 @@ public class AddRecipe_Activity extends WearableActivity implements WearableNavi
 
     //Todo: verify valid recipe before returning
     public void save_click(View view){
-        newRecipe.setName(editName.getText().toString());
-        newRecipe.setRatio(ratioValue);
-        newRecipe.setNicotinebase(nicBaseValue);
-        newRecipe.setNicotine(nicTargetValue);
+        newRecipe.Name = (editName.getText().toString());
+        newRecipe.Ratio = (ratioValue);
+        newRecipe.NicotineBase = (nicBaseValue);
+        newRecipe.Nicotine = (nicTargetValue);
 //        newRecipe.setFlavours(newRecipe.);
         Intent result = new Intent();
         result.putExtra("recipe", newRecipe);

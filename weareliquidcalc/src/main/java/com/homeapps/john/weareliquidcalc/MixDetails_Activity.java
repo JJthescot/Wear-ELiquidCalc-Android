@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.homeapps.john.weareliquidcalc.Pojo.Recipe;
+import com.homeapps.john.shared.common.Recipe;
 
 public class MixDetails_Activity extends WearableActivity {
 
@@ -31,14 +31,14 @@ public class MixDetails_Activity extends WearableActivity {
         setContentView(R.layout.activity_mix_details);
         passedRecipe = (Recipe)getIntent().getSerializableExtra("recipe");
 
-        VG_fract = (100f - passedRecipe.getRatio().floatValue()) / 100f;
-        nic_fract = passedRecipe.getNicotine().floatValue() / passedRecipe.getNicotinebase().floatValue();
-        PG_fract = passedRecipe.getRatio().floatValue() / 100f;
+        VG_fract = (100f - passedRecipe.Ratio.floatValue()) / 100f;
+        nic_fract = passedRecipe.Nicotine.floatValue() / passedRecipe.NicotineBase.floatValue();
+        PG_fract = passedRecipe.Ratio.floatValue() / 100f;
 
         amountValue = 50;
 
         textView_Header = findViewById(R.id.mix_header_textview);
-        textView_Header.setText(passedRecipe.getName());
+        textView_Header.setText(passedRecipe.Name);
 
         textView_Quantity = findViewById(R.id.mix_amount_textview);
         textView_Result = findViewById(R.id.mix_results_textview);
@@ -74,10 +74,10 @@ public class MixDetails_Activity extends WearableActivity {
         String flavourMessage = "";
         float flavourAmountSum = 0f;
 
-        for (int i=0;i<recipe.getFlavours().size();i++){
-            float amount = roundedFloat((recipe.getFlavours().get(i).getPercentage().floatValue() / 100f) * amountValue);
+        for (int i=0;i<recipe.Flavours.size();i++){
+            float amount = roundedFloat((recipe.Flavours.get(i).Percentage.floatValue() / 100f) * amountValue);
             flavourMessage += getString(R.string.mix_details_result_flavour,
-                    recipe.getFlavours().get(i).getName(),
+                    recipe.Flavours.get(i).Name,
                     amount
             );
             flavourAmountSum += amount;

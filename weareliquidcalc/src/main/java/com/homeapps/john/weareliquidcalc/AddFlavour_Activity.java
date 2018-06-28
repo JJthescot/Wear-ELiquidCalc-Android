@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 
-import com.homeapps.john.weareliquidcalc.Pojo.Flavour;
+import com.homeapps.john.shared.common.Flavour;
 
 public class AddFlavour_Activity extends WearableActivity {
 //Todo: Implement 'add flavour' functionality

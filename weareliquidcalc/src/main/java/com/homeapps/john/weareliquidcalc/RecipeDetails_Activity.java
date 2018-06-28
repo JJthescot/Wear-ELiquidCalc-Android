@@ -8,7 +8,7 @@ import android.support.wearable.activity.WearableActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.homeapps.john.weareliquidcalc.Pojo.Recipe;
+import com.homeapps.john.shared.common.Recipe;
 
 public class RecipeDetails_Activity extends WearableActivity {
 //Todo: Add 'Back' actiondrawer button
@@ -28,14 +28,14 @@ public class RecipeDetails_Activity extends WearableActivity {
         actionMenuView = findViewById(R.id.details_actionview);
 
         String strDetails = String.format(getString(R.string.recipe_details_details),
-                passedRecipe.getName(),
-                "PG "+passedRecipe.getRatio().toString() + "/" + (100 - passedRecipe.getRatio() + " VG"),
-                passedRecipe.getNicotinebase(),
-                passedRecipe.getNicotine());
-        for(int i=0;i<passedRecipe.getFlavours().size();i++){
+                passedRecipe.Name,
+                "PG "+passedRecipe.Ratio.toString() + "/" + (100 - passedRecipe.Ratio + " VG"),
+                passedRecipe.NicotineBase,
+                passedRecipe.Nicotine);
+        for(int i=0;i<passedRecipe.Flavours.size();i++){
             strDetails += getString(R.string.recipe_details_details_flavour, i+1,
-                    passedRecipe.getFlavours().get(i).getName(),
-                    passedRecipe.getFlavours().get(i).getPercentage());
+                    passedRecipe.Flavours.get(i).Name,
+                    passedRecipe.Flavours.get(i).Percentage);
         }
 
         mTextView.setText(strDetails);
